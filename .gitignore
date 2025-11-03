@@ -18,10 +18,6 @@ desktop.ini
 *.swp
 *.swo
 *~
-.project
-.classpath
-.settings/
-nbproject/
 
 # ============================================
 # NODE MODULES Y DEPENDENCIAS
@@ -50,8 +46,6 @@ dist/
 build/
 .next/
 out/
-.nuxt/
-.cache/
 
 # ============================================
 # VARIABLES DE ENTORNO
@@ -65,21 +59,13 @@ out/
 # ============================================
 # ARCHIVOS ESPECÍFICOS DEL PROYECTO
 # ============================================
-*.psd
-*.ai
-*.sketch
-*.fig
+# Archivos de diseño (descomenta si no quieres versionarlos)
+# *.psd
+# *.ai
+# *.sketch
+# *.fig
 
-# Excluir archivos grandes
-*.mp4
-*.mov
-*.avi
+# Archivos comprimidos
 *.zip
 *.rar
 *.7z
-
-# ============================================
-# GIT
-# ============================================
-.git/
-.gitattributes
