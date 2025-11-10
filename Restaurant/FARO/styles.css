@@ -2481,3 +2481,11 @@ section[id] {
     border: 1px solid var(--gris-medio);
   }
 }
+
+.plato-peso {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 0.95rem;
+    color: #4b5563;
+    font-weight: 600;
+}
