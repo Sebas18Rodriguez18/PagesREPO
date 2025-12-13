@@ -1096,8 +1096,8 @@ body {
 
 .grid-comidas-rapidas {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
     margin: 50px 0;
     position: relative;
     z-index: 1;
@@ -1105,7 +1105,7 @@ body {
 
 .tarjeta-comida-rapida {
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1121,7 +1121,7 @@ body {
 .comida-imagen-container {
     position: relative;
     width: 100%;
-    height: 280px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -1217,23 +1217,23 @@ body {
 }
 
 .comida-info {
-    padding: 25px;
+    padding: 18px;
 }
 
 .comida-nombre {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
+    font-size: 1.4em;
     color: #1a1a2e;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-weight: 700;
 }
 
 .comida-descripcion {
     color: #555;
-    font-size: 1em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    min-height: 60px;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    min-height: 50px;
 }
 
 .comida-footer {
