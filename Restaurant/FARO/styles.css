@@ -2932,11 +2932,11 @@ section[id] {
 }
 
 .developer-logo {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   background: var(--blanco);
   border-radius: 50%;
-  padding: 10px;
+  padding: 12px;
   box-shadow: 0 8px 25px rgba(255, 127, 0, 0.3);
   transition: var(--transicion);
   border: 4px solid var(--naranja-principal);
@@ -3045,8 +3045,8 @@ section[id] {
   }
 
   .developer-logo {
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
   }
 
   .developer-name {
@@ -3070,8 +3070,8 @@ section[id] {
   }
 
   .developer-logo {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
 
   .developer-name {
@@ -3108,8 +3108,8 @@ section[id] {
   }
 
   .developer-logo {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
   }
 
   .developer-name {
