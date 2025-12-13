@@ -13,7 +13,8 @@ function initImageModal() {
     const modalDescripcion = document.getElementById('modalDescripcion');
     const cerrarModalBtn = document.querySelector('.cerrar-modal');
     
-    const imagenesPlatos = document.querySelectorAll('.plato-imagen');
+    // Seleccionar tanto imágenes de platos como del menú nocturno
+    const imagenesPlatos = document.querySelectorAll('.plato-imagen, .comida-imagen');
     
     if (!modal || !modalImagen || !modalDescripcion) {
         console.warn('Elementos del modal no encontrados en el DOM');
@@ -40,7 +41,8 @@ function initImageModal() {
     }
     
     imagenesPlatos.forEach(imagen => {
-        const container = imagen.closest('.plato-card');
+        // Buscar el contenedor correcto: .plato-card o .tarjeta-comida-rapida
+        const container = imagen.closest('.plato-card, .tarjeta-comida-rapida');
         if (!container) return;
         
         container.style.cursor = 'pointer';
@@ -49,8 +51,9 @@ function initImageModal() {
         
         container.addEventListener('click', () => {
             const imgSrc = imagen.src;
-            const nombrePlato = container.querySelector('.plato-nombre')?.textContent || '';
-            const descripcionPlato = container.querySelector('.plato-descripcion')?.textContent || '';
+            // Buscar el nombre en ambos selectores posibles
+            const nombrePlato = container.querySelector('.plato-nombre, .comida-nombre')?.textContent || '';
+            const descripcionPlato = container.querySelector('.plato-descripcion, .comida-descripcion')?.textContent || '';
             const captionText = `${nombrePlato}${descripcionPlato ? ' - ' + descripcionPlato : ''}`;
             
             abrirModal(imgSrc, captionText);
@@ -269,3 +272,211 @@ function enhanceHoverEffects() {
 }
 
 enhanceHoverEffects();
+
+/* ========================================
+   FUNCIONALIDAD MENÚ NOCTURNO
+   ======================================== */
+
+function verificarHorarioNocturno() {
+    const ahora = new Date();
+    const horaActual = ahora.getHours();
+    const seccionNocturna = document.querySelector('.seccion-nocturna');
+    
+    if (!seccionNocturna) return;
+    
+    // Horario nocturno: 17:00 (5 PM) a 23:00 (11 PM)
+    const esHorarioNocturno = horaActual >= 17 && horaActual < 23;
+    
+    if (esHorarioNocturno) {
+        seccionNocturna.style.display = 'block';
+        mostrarNotificacionHorario();
+    } else {
+        seccionNocturna.style.filter = 'grayscale(100%)';
+        seccionNocturna.style.opacity = '0.6';
+        agregarMensajeHorario();
+    }
+}
+
+function mostrarNotificacionHorario() {
+    const notificacionExistente = document.querySelector('.notificacion-horario');
+    if (notificacionExistente) return;
+    
+    const notificacion = document.createElement('div');
+    notificacion.className = 'notificacion-horario';
+    notificacion.innerHTML = `
+        <i class="bi bi-moon-stars-fill"></i>
+        <div>
+            <strong>¡Menú Nocturno Disponible!</strong>
+            <p>Nuestras comidas rápidas están listas para ti</p>
+        </div>
+        <button class="cerrar-notificacion" onclick="this.parentElement.remove()">
+            <i class="bi bi-x"></i>
+        </button>
+    `;
+    
+    document.body.appendChild(notificacion);
+    
+    // Agregar estilos dinámicamente
+    if (!document.querySelector('#estilos-notificacion')) {
+        const style = document.createElement('style');
+        style.id = 'estilos-notificacion';
+        style.textContent = `
+            .notificacion-horario {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 20px 25px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                max-width: 400px;
+                z-index: 9999;
+                animation: slideInRight 0.5s ease;
+            }
+            
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            .notificacion-horario i.bi-moon-stars-fill {
+                font-size: 2em;
+                flex-shrink: 0;
+            }
+            
+            .notificacion-horario strong {
+                display: block;
+                font-size: 1.1em;
+                margin-bottom: 5px;
+            }
+            
+            .notificacion-horario p {
+                margin: 0;
+                font-size: 0.9em;
+                opacity: 0.9;
+            }
+            
+            .cerrar-notificacion {
+                background: rgba(255, 255, 255, 0.2);
+                border: none;
+                color: white;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                transition: background 0.3s ease;
+            }
+            
+            .cerrar-notificacion:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+            
+            @media (max-width: 768px) {
+                .notificacion-horario {
+                    bottom: 20px;
+                    right: 20px;
+                    left: 20px;
+                    max-width: none;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Auto-cerrar después de 10 segundos
+    setTimeout(() => {
+        if (notificacion.parentElement) {
+            notificacion.style.animation = 'slideOutRight 0.5s ease';
+            setTimeout(() => notificacion.remove(), 500);
+        }
+    }, 10000);
+}
+
+function agregarMensajeHorario() {
+    const seccionNocturna = document.querySelector('.seccion-nocturna');
+    if (!seccionNocturna) return;
+    
+    const mensajeExistente = seccionNocturna.querySelector('.mensaje-fuera-horario');
+    if (mensajeExistente) return;
+    
+    const mensaje = document.createElement('div');
+    mensaje.className = 'mensaje-fuera-horario';
+    mensaje.innerHTML = `
+        <i class="bi bi-moon"></i>
+        <h3>Menú no disponible en este momento</h3>
+        <p>Nuestro menú nocturno está disponible de 5:00 PM a 11:00 PM</p>
+        <p><strong>Vuelve pronto para disfrutar nuestras deliciosas comidas rápidas</strong></p>
+    `;
+    
+    seccionNocturna.insertBefore(mensaje, seccionNocturna.querySelector('.grid-comidas-rapidas'));
+    
+    // Agregar estilos para el mensaje
+    if (!document.querySelector('#estilos-mensaje-horario')) {
+        const style = document.createElement('style');
+        style.id = 'estilos-mensaje-horario';
+        style.textContent = `
+            .mensaje-fuera-horario {
+                background: rgba(255, 255, 255, 0.9);
+                padding: 40px;
+                border-radius: 20px;
+                text-align: center;
+                margin: 30px 0;
+                border: 3px dashed #667eea;
+            }
+            
+            .mensaje-fuera-horario i {
+                font-size: 4em;
+                color: #667eea;
+                display: block;
+                margin-bottom: 20px;
+            }
+            
+            .mensaje-fuera-horario h3 {
+                color: #1a1a2e;
+                font-size: 2em;
+                margin-bottom: 15px;
+            }
+            
+            .mensaje-fuera-horario p {
+                color: #555;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Verificar horario al cargar la página
+verificarHorarioNocturno();
+
+// Verificar horario cada 5 minutos
+setInterval(verificarHorarioNocturno, 300000);
+
+// Smooth scroll para el link del menú nocturno
+document.addEventListener('DOMContentLoaded', () => {
+    const linkNocturno = document.querySelector('a[href="#comidas-rapidas"]');
+    if (linkNocturno) {
+        linkNocturno.addEventListener('click', (e) => {
+            e.preventDefault();
+            const seccion = document.querySelector('#comidas-rapidas');
+            if (seccion) {
+                seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+});

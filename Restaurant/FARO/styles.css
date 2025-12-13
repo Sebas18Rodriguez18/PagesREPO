@@ -1663,6 +1663,25 @@ section[id] {
     flex: 0 0 auto;
     margin-left: auto;
   }
+  
+  .grid-comidas-rapidas {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
+  .comida-imagen-container {
+    height: 240px;
+  }
+
+  .info-nocturna {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .info-item {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 380px) {
@@ -1694,6 +1713,38 @@ section[id] {
 
   .hero-descripcion {
     font-size: 1rem;
+  }
+  
+  .grid-comidas-rapidas {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .comida-imagen-container {
+    height: 220px;
+  }
+
+  .comida-nombre {
+    font-size: 1.4rem;
+  }
+
+  .comida-descripcion {
+    font-size: 0.95rem;
+  }
+
+  .opciones-precio {
+    padding: 12px;
+  }
+
+  .horario-badge {
+    font-size: 0.85rem;
+    padding: 8px 18px;
+  }
+
+  .badge-nocturno,
+  .badge-especial {
+    font-size: 0.75rem;
+    padding: 6px 12px;
   }
 
   .titulo-decorado,
@@ -1946,6 +1997,32 @@ section[id] {
   .footer-info li,
   .footer-cta {
     font-size: 0.85rem;
+  }
+  
+  .seccion-nocturna {
+    padding: 50px 15px;
+  }
+
+  .comida-imagen-container {
+    height: 200px;
+  }
+
+  .comida-contenido {
+    padding: 20px 15px;
+  }
+
+  .opcion {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .info-nocturna {
+    padding: 20px 15px;
+  }
+
+  .info-item {
+    font-size: 0.9rem;
   }
 
   .footer-logo h3 {
@@ -2488,4 +2565,315 @@ section[id] {
     font-size: 0.95rem;
     color: #4b5563;
     font-weight: 600;
+}
+
+/* ============================================
+   MENÚ NOCTURNO - COMIDAS RÁPIDAS
+   ============================================ */
+
+.seccion-nocturna {
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.05) 0%, 
+    rgba(0, 76, 153, 0.05) 50%, 
+    rgba(255, 127, 0, 0.05) 100%
+  );
+  padding: 80px 20px;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.seccion-nocturna::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,127,0,0.1)"/></svg>');
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.seccion-nocturna .titulo-seccion-contenedor {
+  position: relative;
+  z-index: 1;
+}
+
+.horario-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-principal));
+  color: var(--blanco);
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 15px;
+  box-shadow: var(--sombra-azul);
+  animation: pulsoSuave 2s infinite;
+}
+
+@keyframes pulsoSuave {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: var(--sombra-azul);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 76, 153, 0.5);
+  }
+}
+
+.grid-comidas-rapidas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 35px;
+  position: relative;
+  z-index: 1;
+  margin-top: 50px;
+}
+
+.tarjeta-comida-rapida {
+  background: var(--blanco);
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: var(--sombra-media);
+  transition: var(--transicion);
+  border: 3px solid transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.tarjeta-comida-rapida:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--sombra-fuerte);
+  border-color: var(--naranja-principal);
+}
+
+.tarjeta-comida-rapida.destacado {
+  border-color: var(--naranja-principal);
+  box-shadow: var(--sombra-naranja);
+}
+
+.tarjeta-comida-rapida.especial {
+  border-color: var(--azul-principal);
+  box-shadow: var(--sombra-azul);
+}
+
+.comida-imagen-container {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.comida-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transicion);
+}
+
+.tarjeta-comida-rapida:hover .comida-imagen {
+  transform: scale(1.15);
+}
+
+.badge-nocturno {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 76, 153, 0.85));
+  color: var(--blanco);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.badge-nocturno i {
+  font-size: 1rem;
+  animation: brilloLuna 3s infinite;
+}
+
+@keyframes brilloLuna {
+  0%, 100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: rotate(-15deg);
+  }
+}
+
+.badge-especial {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  color: var(--negro);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+  z-index: 2;
+  animation: brilloEspecial 2s infinite;
+}
+
+@keyframes brilloEspecial {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.comida-contenido {
+  padding: 25px;
+}
+
+.comida-nombre {
+  font-size: 1.6rem;
+  color: var(--azul-principal);
+  margin-bottom: 12px;
+  font-weight: 800;
+  font-family: 'Playfair Display', serif;
+}
+
+.comida-descripcion {
+  color: var(--gris-oscuro);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.opciones-precio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--gris-claro);
+  border-radius: 15px;
+  border: 2px solid var(--naranja-principal);
+}
+
+.opcion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: var(--blanco);
+  border-radius: 10px;
+  transition: var(--transicion);
+  border: 2px solid transparent;
+}
+
+.opcion:hover {
+  border-color: var(--naranja-principal);
+  transform: translateX(5px);
+}
+
+.opcion.destacada {
+  background: linear-gradient(135deg, var(--naranja-principal), var(--naranja-claro));
+  color: var(--blanco);
+  font-weight: 700;
+}
+
+.opcion-nombre {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.opcion-precio {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--naranja-principal);
+}
+
+.opcion.destacada .opcion-precio {
+  color: var(--blanco);
+}
+
+.info-nocturna {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  padding: 30px;
+  background: linear-gradient(135deg, var(--azul-principal), var(--azul-claro));
+  border-radius: 20px;
+  box-shadow: var(--sombra-azul);
+  position: relative;
+  z-index: 1;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blanco);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transicion);
+}
+
+.info-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  border-color: var(--naranja-principal);
+}
+
+.info-item i {
+  font-size: 1.3rem;
+  color: var(--naranja-principal);
+}
+
+.nav-link-nocturno {
+  background: linear-gradient(135deg, rgba(0, 76, 153, 0.2), rgba(0, 0, 0, 0.2));
+  border: 2px solid var(--azul-principal);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link-nocturno::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.nav-link-nocturno:hover::before {
+  left: 100%;
+}
+
+.nav-link-nocturno:hover {
+  background: linear-gradient(135deg, var(--azul-principal), var(--azul-oscuro));
+  border-color: var(--naranja-principal);
 }

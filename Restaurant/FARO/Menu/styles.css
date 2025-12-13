@@ -1031,3 +1031,400 @@ body {
         background: #333;
     }
 }
+
+/* ========================================
+   SECCIÓN MENÚ NOCTURNO
+   ======================================== */
+
+.seccion-nocturna {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.seccion-nocturna::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.seccion-nocturna .menu-titulo {
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    font-size: 3em;
+}
+
+.seccion-nocturna .menu-subtitulo {
+    color: #e0e0e0;
+    font-size: 1.2em;
+    margin-bottom: 50px;
+}
+
+.horario-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #1a1a2e;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1em;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    margin-top: 15px;
+    animation: pulsoSuave 2s ease-in-out infinite;
+}
+
+@keyframes pulsoSuave {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+    }
+}
+
+.grid-comidas-rapidas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.tarjeta-comida-rapida {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+}
+
+.tarjeta-comida-rapida:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+}
+
+.comida-imagen-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.comida-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tarjeta-comida-rapida:hover .comida-imagen {
+    transform: scale(1.15);
+}
+
+.overlay-imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay-imagen i {
+    font-size: 3em;
+    color: white;
+}
+
+.tarjeta-comida-rapida:hover .overlay-imagen {
+    opacity: 1;
+}
+
+.badge-nocturno {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+    animation: brilloLuna 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes brilloLuna {
+    0%, 100% {
+        transform: rotate(-5deg);
+        box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        transform: rotate(5deg);
+        box-shadow: 0 6px 15px rgba(102, 126, 234, 0.6);
+    }
+}
+
+.badge-especial {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(245, 87, 108, 0.4);
+    animation: brilloEspecial 2s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes brilloEspecial {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.comida-info {
+    padding: 25px;
+}
+
+.comida-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.comida-descripcion {
+    color: #555;
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+.comida-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.comida-precio {
+    font-size: 1.8em;
+    font-weight: 900;
+    color: #d4af37;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.badge-rapido {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.opciones-precio {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.opcion-precio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.opcion-precio.destacada {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    border-color: #ffd700;
+    transform: scale(1.05);
+}
+
+.opcion-label {
+    font-size: 0.85em;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.opcion-precio.destacada .opcion-label {
+    color: #1a1a2e;
+}
+
+.opcion-precio .precio {
+    font-size: 1.4em;
+    font-weight: 900;
+    color: #d4af37;
+}
+
+.info-nocturna {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    color: white;
+}
+
+.info-item i {
+    font-size: 2em;
+    color: #ffd700;
+    flex-shrink: 0;
+}
+
+.info-item strong {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #ffd700;
+}
+
+.info-item p {
+    margin: 0;
+    color: #e0e0e0;
+    line-height: 1.5;
+}
+
+.nav-link-nocturno {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-nocturno::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-link-nocturno:hover::before {
+    left: 100%;
+}
+
+/* Responsivo para menú nocturno */
+@media (max-width: 992px) {
+    .grid-comidas-rapidas {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .comida-imagen-container {
+        height: 220px;
+    }
+
+    .seccion-nocturna .menu-titulo {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .seccion-nocturna {
+        padding: 60px 20px;
+    }
+
+    .grid-comidas-rapidas {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .comida-imagen-container {
+        height: 250px;
+    }
+
+    .seccion-nocturna .menu-titulo {
+        font-size: 2em;
+    }
+
+    .info-nocturna {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .horario-badge {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+
+    .comida-nombre {
+        font-size: 1.5em;
+    }
+
+    .comida-precio {
+        font-size: 1.5em;
+    }
+
+    .comida-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .opciones-precio {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
