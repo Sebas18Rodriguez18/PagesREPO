@@ -1429,3 +1429,319 @@ body {
         justify-content: space-between;
     }
 }
+
+/* ============================================
+   FOOTER Y CRÉDITOS DEL DESARROLLADOR
+   ============================================ */
+
+.footer-menu {
+    background: linear-gradient(135deg, var(--azul-principal), var(--azul-claro));
+    color: var(--blanco);
+    padding: 40px 20px 20px;
+    margin-top: 80px;
+    border-top: 4px solid var(--naranja-principal);
+}
+
+.footer-info-simple {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid rgba(255, 127, 0, 0.3);
+}
+
+.footer-info-simple p {
+    margin: 10px 0;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.footer-info-simple a {
+    color: var(--naranja-principal);
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transicion);
+}
+
+.footer-info-simple a:hover {
+    color: var(--naranja-claro);
+    text-decoration: underline;
+}
+
+.footer-developer {
+    position: relative;
+}
+
+.footer-developer::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--naranja-principal), var(--azul-claro));
+    border-radius: 10px;
+}
+
+.developer-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 127, 0, 0.05));
+    padding: 30px;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 127, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px);
+    transition: var(--transicion);
+}
+
+.developer-card:hover {
+    border-color: var(--naranja-principal);
+    box-shadow: 0 10px 40px rgba(255, 127, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.developer-link {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-decoration: none;
+    flex: 1;
+    min-width: 300px;
+}
+
+.developer-logo {
+    width: 100px;
+    height: 100px;
+    background: var(--blanco);
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 8px 25px rgba(255, 127, 0, 0.3);
+    transition: var(--transicion);
+    border: 4px solid var(--naranja-principal);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.developer-link:hover .developer-logo {
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0 12px 35px rgba(255, 127, 0, 0.5);
+}
+
+.developer-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.logo-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--naranja-principal), var(--naranja-claro));
+    border-radius: 50%;
+}
+
+.logo-fallback i {
+    font-size: 3rem;
+    color: var(--blanco);
+}
+
+.developer-info {
+    flex: 1;
+}
+
+.developer-title {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.developer-name {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--naranja-principal), var(--naranja-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.developer-contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--naranja-principal);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.developer-contact i {
+    font-size: 1.3rem;
+    animation: pulsoSuave 2s infinite;
+}
+
+.developer-whatsapp-btn {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: var(--blanco);
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    transition: var(--transicion);
+    border: 3px solid var(--blanco);
+}
+
+.developer-whatsapp-btn:hover {
+    background: linear-gradient(135deg, #128c7e, #25d366);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+}
+
+.developer-whatsapp-btn i {
+    font-size: 1.5rem;
+    animation: brilloWhatsApp 2s infinite;
+}
+
+@keyframes brilloWhatsApp {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive para Footer y Developer Credits */
+@media (max-width: 992px) {
+    .developer-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .developer-link {
+        flex-direction: column;
+        text-align: center;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .developer-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .developer-name {
+        font-size: 1.5rem;
+    }
+
+    .developer-whatsapp-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-menu {
+        padding: 30px 15px 15px;
+        margin-top: 60px;
+    }
+
+    .footer-info-simple {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+
+    .footer-info-simple p {
+        font-size: 0.9rem;
+    }
+
+    .developer-card {
+        padding: 20px;
+    }
+
+    .developer-logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .developer-name {
+        font-size: 1.3rem;
+    }
+
+    .developer-title {
+        font-size: 0.85rem;
+    }
+
+    .developer-contact {
+        font-size: 1rem;
+    }
+
+    .developer-whatsapp-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-menu {
+        padding: 25px 10px 10px;
+        margin-top: 40px;
+    }
+
+    .footer-info-simple p {
+        font-size: 0.85rem;
+    }
+
+    .developer-card {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .developer-link {
+        gap: 15px;
+    }
+
+    .developer-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .developer-name {
+        font-size: 1.1rem;
+    }
+
+    .developer-title {
+        font-size: 0.8rem;
+    }
+
+    .developer-contact {
+        font-size: 0.9rem;
+    }
+
+    .developer-whatsapp-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .logo-fallback i {
+        font-size: 2rem;
+    }
+}
